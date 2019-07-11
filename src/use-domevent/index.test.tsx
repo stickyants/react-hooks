@@ -1,7 +1,6 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react-hooks';
 import { fireEvent } from '@testing-library/dom';
 import { cleanup } from '@testing-library/react';
-import { useRef } from 'react';
 import { useDOMEvent } from './index';
 
 describe('useDOMEvent', () => {

@@ -12,7 +12,6 @@ export function useDOMEvent(
         return;
       }
       const eventCallback = (e: Event) => {
-        console.log('hey');
         callback(e);
       };
       ref.current.addEventListener(eventType, eventCallback, opts);
