@@ -1,6 +1,6 @@
 import { cleanup, fireEvent } from '@testing-library/react';
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useFocus } from '.';
+import { useFocus, useFocusBlur } from '.';
 
 describe('useFocus', () => {
   afterEach(cleanup);
@@ -34,5 +34,29 @@ describe('useFocus', () => {
 
     expect(result.current).toEqual(true);
 
+  });
+
+});
+
+describe('useFocusBlur', () => {
+  test('should set initial focus to false', () => {
+    const { result } = renderHook(() => useFocusBlur());
+
+    expect(result.current[0]).toBe(false);
+    expect(typeof result.current[1]).toBe('function');
+    expect(typeof result.current[2]).toBe('function');
+  });
+
+  test('should set focus value to true/false when focus/blur are called', () => {
+    const { result } = renderHook(() => useFocusBlur());
+    const [_, focus, blur] = result.current;
+    act(() => {
+      (focus as any)();
+    });
+    expect(result.current[0]).toBe(true);
+    act(() => {
+      (blur as any)();
+    });
+    expect(result.current[0]).toBe(false);
   });
 });

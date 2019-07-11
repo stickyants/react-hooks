@@ -18,14 +18,19 @@ describe('use-async', () => {
     const view = () => 'loading';
     const viewSuccess = () => 'success';
     const viewError = () => 'error';
-    const { result, rerender } = renderHook(() => useAsync(fn, [], view, viewSuccess, viewError));
+    const { result } = renderHook(() => useAsync(fn, [], view, viewSuccess, viewError));
+    const error = console.error;
+    console.error = () => { };
     expect(result.current).toBe('loading');
     await new Promise(r => setTimeout(r));
     expect(result.current).toBe('success');
+    console.error = error;
 
   });
 
   test('should change view to error when fails', async () => {
+    const error = console.error;
+    console.error = () => { };
     const fn = jest.fn(() => new Promise((_, r) => r()));
     const view = () => 'loading';
     const viewSuccess = () => 'success';
@@ -34,6 +39,7 @@ describe('use-async', () => {
     expect(result.current).toBe('loading');
     await new Promise(r => setTimeout(r));
     expect(result.current).toBe('error');
+    console.error = error;
 
   });
 });
