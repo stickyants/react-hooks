@@ -1,5 +1,5 @@
-import { cleanup, fireEvent, act } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { cleanup, fireEvent } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { useFocus } from '.';
 
 describe('useFocus', () => {
@@ -28,14 +28,9 @@ describe('useFocus', () => {
 
     const { result } = renderHook(() => useFocus({ current: el }));
 
-    const error = console.error;
-    console.error = () => { };
-
     act(() => {
       fireEvent.focus(el);
     });
-
-    console.error = error;
 
     expect(result.current).toEqual(true);
 

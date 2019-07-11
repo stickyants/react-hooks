@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { fireEvent } from '@testing-library/dom';
 import { cleanup } from '@testing-library/react';
 import { useDOMEvent } from './index';
@@ -26,7 +26,10 @@ describe('useDOMEvent', () => {
       current: el,
     };
     renderHook(() => useDOMEvent(ref, 'click', callback));
-    fireEvent.click(el);
+    act(() => {
+      fireEvent.click(el);
+
+    });
     expect(callback).toHaveBeenCalled();
   });
 });
