@@ -1,11 +1,12 @@
 {
   "name": "@stickyants/react-hooks",
   "version": "1.0.0",
-  "description": "",
+  "description": "A set of reusable react hooks",
   "main": "index.js",
   "scripts": {
     "pretest": "tsc -p .",
-    "test": "jest --env=jsdom src/.*.test.tsx --watch"
+    "test": "jest --env=jsdom src/.*.test.tsx --watch",
+    "prepublish": "tsc -p ."
   },
   "author": "",
   "license": "ISC",
@@ -22,10 +23,14 @@
     "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
     "tslint-config-airbnb": "^5.11.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8",
+    "lodash.debounce": "^4.0.8"
+  },
+  "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }
