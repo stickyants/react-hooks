@@ -5,7 +5,7 @@ async function* executor<T>(fn: (...args: any[]) => Promise<T>, ...params: any[]
   yield result;
 }
 
-export function useAsync<T>(
+export function useCancellableAsync<T>(
   fn: (...args: any[]) => Promise<T>,
   deps = [],
   loadingView: () => React.ReactNode,

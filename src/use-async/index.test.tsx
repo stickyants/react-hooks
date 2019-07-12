@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useAsync } from '.';
+import { useCancellableAsync } from '.';
 
 describe('use-async', () => {
   test('should not change view to error or success when cancelled', () => {
@@ -9,7 +9,8 @@ describe('use-async', () => {
     const viewSuccess = () => 'success';
     const viewError = () => 'error';
 
-    const { unmount, result } = renderHook(() => useAsync(fn, [], view, viewSuccess, viewError));
+    const { unmount, result } = renderHook(
+      () => useCancellableAsync(fn, [], view, viewSuccess, viewError));
 
     expect(result.current).toBe('loading');
 
@@ -24,7 +25,7 @@ describe('use-async', () => {
     const view = () => 'loading';
     const viewSuccess = () => 'success';
     const viewError = () => 'error';
-    const { result } = renderHook(() => useAsync(fn, [], view, viewSuccess, viewError));
+    const { result } = renderHook(() => useCancellableAsync(fn, [], view, viewSuccess, viewError));
 
     const error = console.error;
     console.error = () => { };
@@ -46,7 +47,7 @@ describe('use-async', () => {
     const viewSuccess = () => 'success';
     const viewError = () => 'error';
 
-    const { result } = renderHook(() => useAsync(fn, [], view, viewSuccess, viewError));
+    const { result } = renderHook(() => useCancellableAsync(fn, [], view, viewSuccess, viewError));
 
     const error = console.error;
     console.error = () => { };

@@ -12,6 +12,6 @@ export function useDebouncedDOMEvent(
     trailing?: boolean,
     maxWait?: number,
   } = { trailing: true, maxWait: 250 }) {
-  const debouncedCallback = useCallback(debounce(callback, debounceOptions), []);
+  const debouncedCallback = useCallback(debounce(callback, debounceOptions), [callback]);
   useDOMEvent(ref, eventType, debouncedCallback, opts);
 }
